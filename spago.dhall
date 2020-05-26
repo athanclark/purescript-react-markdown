@@ -4,7 +4,7 @@ You can edit this file as you like.
 -}
 { name = "my-project"
 , dependencies =
-  [ "psci-support", "react", "row-extra", "undefinable" ]
+  [ "react", "row-extra", "undefinable" ]
 , packages = ./packages.dhall
-, sources = [ "src/**/*.purs", "test/**/*.purs" ]
+, sources = [ "src/**/*.purs" ]
 }
