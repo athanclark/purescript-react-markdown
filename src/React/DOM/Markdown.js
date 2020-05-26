@@ -1,3 +1,3 @@
 "use strict"
 
-exports.markdownImpl = require("react-markdown").default;
+exports.markdownImpl = require("react-markdown");
