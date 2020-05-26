@@ -76,7 +76,7 @@ type Renderers =
 
 
 markdown :: forall props renderers
-          . SubRow Renderers renderers
-         => SubRow (OptionalProps (RequiredProps renderers)) props
+          . SubRow renderers Renderers
+         => SubRow props (OptionalProps (RequiredProps renderers))
          => Record props -> ReactElement
 markdown props = unsafeCreateElement markdownImpl props []
