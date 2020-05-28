@@ -9,12 +9,12 @@ import Effect.Uncurried (EffectFn3, EffectFn1)
 
 foreign import markdownImpl :: forall a. ReactClass a
 
-type RequiredProps renderers =
+type RequiredProps renderers o =
   ( source :: String
   , renderers :: Record renderers
-  )
+  | o )
 
-type OptionalProps o =
+type OptionalProps =
   ( className :: String
   , escapeHtml :: Boolean
   , skipHtml :: Boolean
@@ -30,7 +30,7 @@ type OptionalProps o =
   , transformImageUri :: Nullable (EffectFn1 String String)
   , plugins :: Array Plugin
   , parserOptions :: ParserOptions
-  | o )
+  )
 
 foreign import data Plugin :: Type
 foreign import data ParserOptions :: Type
@@ -77,6 +77,6 @@ type Renderers =
 
 markdown :: forall props renderers
           . SubRow renderers Renderers
-         => SubRow props (OptionalProps (RequiredProps renderers))
-         => Record props -> ReactElement
+         => SubRow props OptionalProps
+         => Record (RequiredProps renderers props) -> ReactElement
 markdown props = unsafeCreateElement markdownImpl props []
